@@ -19,6 +19,10 @@ from src.ecs.systems.s_bullet_limits import system_bullet_limits
 from src.ecs.systems.s_collision_player_enemy import system_collision_player_enemy
 from src.ecs.systems.s_collision_enemy_bullet import system_collision_enemy_bullet
 from src.ecs.systems.s_rendering import system_rendering
+from src.ecs.systems.s_animation import system_animation
+from src.ecs.systems.s_player_state import system_player_state
+from src.ecs.systems.s_enemy_hunter_state import system_enemy_hunter_state
+from src.ecs.systems.s_explosion_kill import system_explosion_kill
 
 class GameEngine:
     def __init__(self) -> None:
@@ -49,6 +53,8 @@ class GameEngine:
             self.player_cfg = json.load(player_file)
         with open("assets/cfg/bullet.json", encoding="utf-8") as bullet_file:
             self.bullet_cfg = json.load(bullet_file)
+        with open("assets/cfg/explosion.json", encoding="utf-8") as explosion_file:
+            self.explosion_cfg = json.load(explosion_file)
 
     def run(self) -> None:
         self._create()
@@ -83,12 +89,17 @@ class GameEngine:
 
     def _update(self):
         system_enemy_spawner(self.ecs_world, self.delta_time, self.enemies_cfg)
+        system_enemy_hunter_state(self.ecs_world, self._player_entity, self.delta_time)
         system_movement(self.ecs_world, self.delta_time)
         system_screen_bounce(self.ecs_world, self.screen)
         system_player_limits(self.ecs_world, self.screen)
         system_bullet_limits(self.ecs_world, self.screen)
-        system_collision_player_enemy(self.ecs_world, self._player_entity, self.level_01_cfg)
-        system_collision_enemy_bullet(self.ecs_world)
+        system_collision_player_enemy(self.ecs_world, self._player_entity, self.level_01_cfg,
+                                      self.explosion_cfg)
+        system_collision_enemy_bullet(self.ecs_world, self.explosion_cfg)
+        system_player_state(self.ecs_world)
+        system_animation(self.ecs_world, self.delta_time)
+        system_explosion_kill(self.ecs_world)
         self.ecs_world._clear_dead_entities()  # pylint: disable=protected-access
 
     def _draw(self):
@@ -127,5 +138,5 @@ class GameEngine:
                 max_bullets = self.level_01_cfg["player_spawn"]["max_bullets"]
                 if len(self.ecs_world.get_component(CTagBullet)) < max_bullets:
                     create_bullet(self.ecs_world, self._player_c_t.pos,
-                                  pygame.Vector2(self._player_c_s.surf.get_size()),
+                                  pygame.Vector2(self._player_c_s.area.size),
                                   pygame.Vector2(pygame.mouse.get_pos()), self.bullet_cfg)

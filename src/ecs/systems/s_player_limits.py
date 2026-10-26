@@ -12,7 +12,7 @@ def system_player_limits(world: esper.World, screen: pygame.Surface):
     screen_rect = screen.get_rect()
     components = world.get_components(CTransform, CSurface, CTagPlayer)
     for _, (transform, surface, _) in components:
-        player_rect = surface.surf.get_rect(topleft=transform.pos)
+        player_rect = surface.get_area_relative(surface.area, transform.pos)
         if not screen_rect.contains(player_rect):
             player_rect.clamp_ip(screen_rect)
             transform.pos.xy = player_rect.topleft
