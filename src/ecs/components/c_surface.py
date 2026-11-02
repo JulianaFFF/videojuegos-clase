@@ -1,5 +1,6 @@
 import pygame
 
+
 class CSurface:
 
     def __init__(self, size: pygame.Vector2, color: pygame.Color) -> None:
@@ -7,6 +8,7 @@ class CSurface:
         self.surf.fill(color)
         # Area of the surface that is drawn and used for collisions (a single sprite frame)
         self.area = self.surf.get_rect()
+        self.visible = True
 
     @classmethod
     def from_surface(cls, surface: pygame.Surface, number_frames: int = 1) -> "CSurface":
@@ -16,6 +18,10 @@ class CSurface:
         frame_w = surface.get_width() / max(number_frames, 1)
         c_surf.area = pygame.Rect(0, 0, frame_w, surface.get_height())
         return c_surf
+
+    @classmethod
+    def from_text(cls, text: str, font: pygame.font.Font, color: pygame.Color) -> "CSurface":
+        return cls.from_surface(font.render(text, False, color))
 
     @staticmethod
     def get_area_relative(area: pygame.Rect, pos: pygame.Vector2) -> pygame.Rect:

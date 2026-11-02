@@ -15,8 +15,6 @@ class CEnemySpawner:
     def __init__(self, level_cfg: dict) -> None:
         self.current_time = 0.0
         self.spawn_events = [
-            SpawnEvent(event["time"],
-                       event["enemy_type"],
-                       pygame.Vector2(event["position"]["x"], event["position"]["y"]))
+            SpawnEvent(event["time"], event["enemy_type"], pygame.Vector2(event["position"]["x"], event["position"]["y"]))
             for event in level_cfg["enemy_spawn_events"]
         ]

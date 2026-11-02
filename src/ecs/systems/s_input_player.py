@@ -4,8 +4,7 @@ import esper
 from src.ecs.components.c_input_command import CInputCommand, CommandPhase
 
 
-def system_input_player(world: esper.World, event: pygame.event.Event,
-                        do_action: Callable[[CInputCommand], None]):
+def system_input_player(world: esper.World, event: pygame.event.Event, do_action: Callable[[CInputCommand], None]):
     """
     System that maps keyboard/mouse events to input commands (Command pattern).
     It only updates the command phase and delegates the action to do_action.

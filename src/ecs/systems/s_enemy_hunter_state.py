@@ -5,6 +5,7 @@ from src.ecs.components.c_surface import CSurface
 from src.ecs.components.c_transform import CTransform
 from src.ecs.components.c_velocity import CVelocity
 from src.ecs.components.c_enemy_hunter_state import CEnemyHunterState, HunterState
+from src.engine.service_locator import ServiceLocator
 
 
 def system_enemy_hunter_state(world: esper.World, player_entity: int, dt: float):
@@ -28,6 +29,7 @@ def system_enemy_hunter_state(world: esper.World, player_entity: int, dt: float)
             c_v.vel.xy = (0, 0)
             if hunter_center.distance_to(player_center) < c_hst.distance_start_chase:
                 c_hst.state = HunterState.CHASE
+                ServiceLocator.sounds_service.play(c_hst.sound_chase)
 
         if c_hst.state == HunterState.CHASE:
             if hunter_center.distance_to(origin_center) >= c_hst.distance_start_return:

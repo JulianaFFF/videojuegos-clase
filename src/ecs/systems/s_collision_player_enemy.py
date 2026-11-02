@@ -3,15 +3,19 @@ import esper
 from src.create.prefab_creator import create_explosion
 from src.ecs.components.c_transform import CTransform
 from src.ecs.components.c_surface import CSurface
+from src.ecs.components.c_shield import CShield, ShieldState
 from src.ecs.components.tags.c_tag_enemy import CTagEnemy
 
 
-def system_collision_player_enemy(world: esper.World, player_entity: int, level_cfg: dict,
-                                  explosion_cfg: dict):
+def system_collision_player_enemy(world: esper.World, player_entity: int, level_cfg: dict, explosion_cfg: dict):
     """
     System that detects collisions between the player and enemies.
     The enemy is destroyed (leaving an explosion) and the player returns to its spawn position.
+    The player cannot be hit while the shield is active.
     """
+    if world.component_for_entity(player_entity, CShield).state == ShieldState.ACTIVE:
+        return
+
     pl_t = world.component_for_entity(player_entity, CTransform)
     pl_s = world.component_for_entity(player_entity, CSurface)
     player_rect = CSurface.get_area_relative(pl_s.area, pl_t.pos)

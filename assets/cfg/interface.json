@@ -1,0 +1,56 @@
+{
+    "title": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "ASTRO CAZADOR",
+        "size": 16,
+        "color": { "r": 255, "g": 200, "b": 60 },
+        "position": { "x": 320, "y": 8 },
+        "align": "center"
+    },
+    "instructions": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "FLECHAS:MOVER CLICK:DISPARAR ESPACIO:ESCUDO P:PAUSA",
+        "size": 8,
+        "color": { "r": 200, "g": 200, "b": 200 },
+        "position": { "x": 6, "y": 346 }
+    },
+    "pause_title": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "PAUSA",
+        "size": 32,
+        "color": { "r": 255, "g": 255, "b": 255 },
+        "position": { "x": 320, "y": 100 },
+        "align": "center"
+    },
+    "pause_hint": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "PRESIONA P PARA CONTINUAR",
+        "size": 8,
+        "color": { "r": 200, "g": 200, "b": 200 },
+        "position": { "x": 320, "y": 142 },
+        "align": "center"
+    },
+    "shield_label": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "ESCUDO",
+        "size": 8,
+        "color": { "r": 255, "g": 255, "b": 255 },
+        "position": { "x": 428, "y": 346 }
+    },
+    "shield_value": {
+        "font": "assets/fnt/PressStart2P.ttf",
+        "text": "LISTO",
+        "size": 8,
+        "color": { "r": 110, "g": 230, "b": 120 },
+        "position": { "x": 580, "y": 346 }
+    },
+    "shield_bar": {
+        "position": { "x": 480, "y": 346 },
+        "size": { "w": 92, "h": 8 },
+        "color_background": { "r": 60, "g": 60, "b": 60 },
+        "color_ready": { "r": 110, "g": 230, "b": 120 },
+        "color_active": { "r": 90, "g": 220, "b": 255 },
+        "color_cooldown": { "r": 255, "g": 150, "b": 50 },
+        "color_flash": { "r": 255, "g": 255, "b": 255 }
+    }
+}

@@ -16,8 +16,7 @@ class CAnimation:
     def __init__(self, animations: dict) -> None:
         self.number_frames = animations["number_frames"]
         self.animations_list: list[AnimationData] = [
-            AnimationData(anim["name"], anim["start"], anim["end"], anim["framerate"])
-            for anim in animations["list"]
+            AnimationData(anim["name"], anim["start"], anim["end"], anim["framerate"]) for anim in animations["list"]
         ]
         self.curr_anim = 0
         self.curr_anim_time = self.animations_list[self.curr_anim].framerate
