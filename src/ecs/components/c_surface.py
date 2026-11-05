@@ -1,29 +1,24 @@
 import pygame
 
-
 class CSurface:
-
-    def __init__(self, size: pygame.Vector2, color: pygame.Color) -> None:
+    def __init__(self, size:pygame.Vector2, color:pygame.Color) -> None:
         self.surf = pygame.Surface(size)
         self.surf.fill(color)
-        # Area of the surface that is drawn and used for collisions (a single sprite frame)
         self.area = self.surf.get_rect()
-        self.visible = True
-
+        
     @classmethod
-    def from_surface(cls, surface: pygame.Surface, number_frames: int = 1) -> "CSurface":
-        c_surf = cls(pygame.Vector2(0, 0), pygame.Color(0, 0, 0))
+    def from_surface(cls, surface:pygame.Surface):
+        c_surf = cls(pygame.Vector2(0,0), pygame.Color(0, 0, 0))
         c_surf.surf = surface
-        # The texture is a linear strip of frames, so each frame has width / number_frames
-        frame_w = surface.get_width() / max(number_frames, 1)
-        c_surf.area = pygame.Rect(0, 0, frame_w, surface.get_height())
+        c_surf.area = surface.get_rect()
         return c_surf
 
     @classmethod
-    def from_text(cls, text: str, font: pygame.font.Font, color: pygame.Color) -> "CSurface":
-        return cls.from_surface(font.render(text, False, color))
-
-    @staticmethod
-    def get_area_relative(area: pygame.Rect, pos: pygame.Vector2) -> pygame.Rect:
-        """Returns the area placed at the given position (screen space rect)."""
-        return pygame.Rect(pos.x, pos.y, area.width, area.height)
+    def from_text(cls, text:str, font:pygame.font.Font, color:pygame.Color):
+        text_surface = font.render(text, True, color)
+        return cls.from_surface(text_surface)
+    
+    def get_area_relative(area:pygame.Rect, pos_topleft:pygame.Vector2):
+        new_rect = area.copy()
+        new_rect.topleft = pos_topleft.copy()
+        return new_rect

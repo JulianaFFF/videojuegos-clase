@@ -1,0 +1,23 @@
+{
+    "image": "assets/img/shield.png",
+    "animations": {
+        "number_frames": 4,
+        "list": [
+            {
+                "name": "ACTIVE",
+                "start": 0,
+                "end": 3,
+                "framerate": 12
+            }
+        ]
+    },
+    "duration": 2.0,
+    "cooldown": 5.0,
+    "radius": 48,
+    "sound_activate": "assets/snd/shield_up.ogg",
+    "sound_ready": "assets/snd/shield_ready.ogg",
+    "screen_shake": {
+        "intensity": 4,
+        "duration": 0.3
+    }
+}

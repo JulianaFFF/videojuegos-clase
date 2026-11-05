@@ -1,56 +1,59 @@
 {
+    "font": "assets/fnt/PressStart2P.ttf",
     "title": {
-        "font": "assets/fnt/PressStart2P.ttf",
-        "text": "ASTRO CAZADOR",
+        "text": "ASTEROIDES ECS",
         "size": 16,
-        "color": { "r": 255, "g": 200, "b": 60 },
-        "position": { "x": 320, "y": 8 },
-        "align": "center"
+        "color": { "r": 255, "g": 220, "b": 90 },
+        "anchor": "midtop",
+        "position": { "x": 320, "y": 8 }
     },
     "instructions": {
-        "font": "assets/fnt/PressStart2P.ttf",
-        "text": "FLECHAS:MOVER CLICK:DISPARAR ESPACIO:ESCUDO P:PAUSA",
+        "text": "FLECHAS: MOVER  CLIC: DISPARAR  ESPACIO: ESCUDO  P: PAUSA",
         "size": 8,
-        "color": { "r": 200, "g": 200, "b": 200 },
-        "position": { "x": 6, "y": 346 }
+        "color": { "r": 170, "g": 170, "b": 190 },
+        "anchor": "midbottom",
+        "position": { "x": 320, "y": 354 }
     },
-    "pause_title": {
-        "font": "assets/fnt/PressStart2P.ttf",
+    "pause": {
         "text": "PAUSA",
         "size": 32,
         "color": { "r": 255, "g": 255, "b": 255 },
-        "position": { "x": 320, "y": 100 },
-        "align": "center"
+        "anchor": "center",
+        "position": { "x": 320, "y": 165 }
     },
     "pause_hint": {
-        "font": "assets/fnt/PressStart2P.ttf",
         "text": "PRESIONA P PARA CONTINUAR",
         "size": 8,
         "color": { "r": 200, "g": 200, "b": 200 },
-        "position": { "x": 320, "y": 142 },
-        "align": "center"
+        "anchor": "center",
+        "position": { "x": 320, "y": 200 }
+    },
+    "pause_overlay": {
+        "color": { "r": 0, "g": 0, "b": 0 },
+        "alpha": 140
     },
     "shield_label": {
-        "font": "assets/fnt/PressStart2P.ttf",
         "text": "ESCUDO",
         "size": 8,
-        "color": { "r": 255, "g": 255, "b": 255 },
-        "position": { "x": 428, "y": 346 }
+        "color": { "r": 140, "g": 190, "b": 255 },
+        "anchor": "topleft",
+        "position": { "x": 8, "y": 8 }
     },
-    "shield_value": {
-        "font": "assets/fnt/PressStart2P.ttf",
-        "text": "LISTO",
+    "shield_status": {
+        "text_ready": "LISTO",
+        "text_active": "ACTIVO",
         "size": 8,
-        "color": { "r": 110, "g": 230, "b": 120 },
-        "position": { "x": 580, "y": 346 }
+        "color": { "r": 255, "g": 255, "b": 255 },
+        "color_ready": { "r": 120, "g": 255, "b": 140 },
+        "anchor": "topleft",
+        "position": { "x": 96, "y": 20 }
     },
     "shield_bar": {
-        "position": { "x": 480, "y": 346 },
-        "size": { "w": 92, "h": 8 },
-        "color_background": { "r": 60, "g": 60, "b": 60 },
-        "color_ready": { "r": 110, "g": 230, "b": 120 },
-        "color_active": { "r": 90, "g": 220, "b": 255 },
-        "color_cooldown": { "r": 255, "g": 150, "b": 50 },
-        "color_flash": { "r": 255, "g": 255, "b": 255 }
+        "position": { "x": 8, "y": 20 },
+        "size": { "x": 80, "y": 8 },
+        "color_bg": { "r": 60, "g": 60, "b": 80 },
+        "color_charging": { "r": 90, "g": 140, "b": 255 },
+        "color_active": { "r": 255, "g": 255, "b": 255 },
+        "color_ready": { "r": 120, "g": 255, "b": 140 }
     }
 }

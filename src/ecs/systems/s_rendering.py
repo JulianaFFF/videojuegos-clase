@@ -1,21 +1,26 @@
 import esper
 import pygame
-import src.ecs.components.c_transform as c_transform
-import src.ecs.components.c_surface as c_surface
-from src.ecs.components.tags.c_tag_ui import CTagUI
 
+from src.ecs.components.c_camera_shake import CCameraShake
+from src.ecs.components.c_transform import CTransform
+from src.ecs.components.c_surface import CSurface
+from src.ecs.components.tags.c_tag_hud import CTagHUD
 
-def system_rendering(world: esper.World, screen: pygame.Surface, camera_offset: pygame.Vector2):
-    """
-    System that renders all entities with a CTransform and CSurface component.
-    Only the current area (sprite frame) of the surface is drawn.
-    The interface is drawn last, on top of the game and unaffected by the camera.
-    """
-    componentes = world.get_components(c_transform.CTransform, c_surface.CSurface)
-    for ent, (transform, surface) in componentes:
-        if surface.visible and not world.has_component(ent, CTagUI):
-            screen.blit(surface.surf, transform.pos + camera_offset, area=surface.area)
+def system_rendering(world:esper.World, screen:pygame.Surface):
+    offset = pygame.Vector2(0, 0)
+    for _, c_shake in world.get_component(CCameraShake):
+        offset = c_shake.offset
 
-    interfaz = world.get_components(c_transform.CTransform, c_surface.CSurface, CTagUI)
-    for _, (transform, surface, _) in interfaz:
-        screen.blit(surface.surf, transform.pos, area=surface.area)
+    components = world.get_components(CTransform, CSurface)
+    
+    c_t:CTransform
+    c_s:CSurface
+    hud = []
+    for entity, (c_t, c_s) in components:
+        if world.has_component(entity, CTagHUD):
+            hud.append((c_t, c_s))
+            continue
+        screen.blit(c_s.surf, c_t.pos + offset, area=c_s.area)
+    # La interfaz se dibuja encima y no tiembla con la camara
+    for c_t, c_s in hud:
+        screen.blit(c_s.surf, c_t.pos, area=c_s.area)

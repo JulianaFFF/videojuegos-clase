@@ -1,5 +1,4 @@
 {
-    "sound_move": "assets/snd/laser_special.ogg",
     "image": "assets/img/player.png",
     "animations": {
         "number_frames": 4,
@@ -18,5 +17,6 @@
             }
         ]
     },
-    "input_velocity": 100
+    "input_velocity": 100,
+    "sound_move": "assets/snd/thrust.ogg"
 }

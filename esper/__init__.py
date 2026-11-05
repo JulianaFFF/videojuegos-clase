@@ -14,7 +14,8 @@ from typing import overload as _overload
 from weakref import ref as _ref
 from weakref import WeakMethod as _WeakMethod
 
-version = "2.5"
+
+version = '2.5'
 
 
 ###################
@@ -41,7 +42,6 @@ def dispatch_event(name: str, *args) -> None:
 
 def _make_callback(name: str):
     """Create an internal callback to remove dead handlers."""
-
     def callback(weak_method):
         event_registry[name].remove(weak_method)
         if not event_registry[name]:
@@ -87,10 +87,10 @@ def remove_handler(name: str, func) -> None:
 ###################
 
 
-_C = _TypeVar("_C")
-_C2 = _TypeVar("_C2")
-_C3 = _TypeVar("_C3")
-_C4 = _TypeVar("_C4")
+_C = _TypeVar('_C')
+_C2 = _TypeVar('_C2')
+_C3 = _TypeVar('_C3')
+_C4 = _TypeVar('_C4')
 
 
 class Processor:
@@ -356,25 +356,30 @@ class World:
         try:
             return self._get_component_cache[component_type]
         except KeyError:
-            return self._get_component_cache.setdefault(component_type, list(self._get_component(component_type)))
+            return self._get_component_cache.setdefault(
+                component_type, list(self._get_component(component_type))
+            )
 
     @_overload
-    def get_components(self, __c1: _Type[_C], __c2: _Type[_C2]) -> _List[_Tuple[int, _Tuple[_C, _C2]]]: ...
+    def get_components(self, __c1: _Type[_C], __c2: _Type[_C2]) -> _List[_Tuple[int, _Tuple[_C, _C2]]]:
+        ...
 
     @_overload
-    def get_components(self, __c1: _Type[_C], __c2: _Type[_C2], __c3: _Type[_C3]) -> _List[_Tuple[int, _Tuple[_C, _C2, _C3]]]: ...
+    def get_components(self, __c1: _Type[_C], __c2: _Type[_C2], __c3: _Type[_C3]) -> _List[_Tuple[int, _Tuple[_C, _C2, _C3]]]:
+        ...
 
     @_overload
-    def get_components(
-        self, __c1: _Type[_C], __c2: _Type[_C2], __c3: _Type[_C3], __c4: _Type[_C4]
-    ) -> _List[_Tuple[int, _Tuple[_C, _C2, _C3, _C4]]]: ...
+    def get_components(self, __c1: _Type[_C], __c2: _Type[_C2], __c3: _Type[_C3], __c4: _Type[_C4]) -> _List[_Tuple[int, _Tuple[_C, _C2, _C3, _C4]]]:
+        ...
 
     def get_components(self, *component_types: _Type[_Any]) -> _Iterable[_Tuple[int, _Tuple[_Any, ...]]]:
         """Get an iterator for Entity and multiple Component sets."""
         try:
             return self._get_components_cache[component_types]
         except KeyError:
-            return self._get_components_cache.setdefault(component_types, list(self._get_components(*component_types)))
+            return self._get_components_cache.setdefault(
+                component_types, list(self._get_components(*component_types))
+            )
 
     def try_component(self, entity: int, component_type: _Type[_C]) -> _Optional[_C]:
         """Try to get a single component type for an Entity.

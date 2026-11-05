@@ -1,36 +1,52 @@
-import pygame
 import esper
-from src.ecs.components.c_shield import CShield, ShieldState
-from src.ecs.components.c_shield_bar import CShieldBar
-from src.ecs.components.c_shield_text import CShieldText
+import pygame
+
+from src.ecs.components.c_shield import CShield
 from src.ecs.components.c_surface import CSurface
+from src.ecs.components.c_text import CText
+from src.ecs.components.c_transform import CTransform
+from src.ecs.components.tags.c_tag_shield_bar import CTagShieldBar
+from src.ecs.components.tags.c_tag_shield_text import CTagShieldText
 
+def _color(cfg:dict) -> pygame.Color:
+    return pygame.Color(cfg["r"], cfg["g"], cfg["b"])
 
-def system_shield_hud(world: esper.World, player_entity: int):
-    """
-    System that keeps the bar and the text of the shield in sync with its state.
-    The bar drains while active and refills during the cooldown.
-    """
+def system_shield_hud(world:esper.World, player_entity:int, interface_cfg:dict, game_time:float):
     c_sh = world.component_for_entity(player_entity, CShield)
+    bar_cfg = interface_cfg["shield_bar"]
+    status_cfg = interface_cfg["shield_status"]
+    # El "LISTO" parpadea suavemente para llamar la atencion
+    blink_on = int(game_time * 3) % 2 == 0
 
-    for _, (c_s, c_b) in world.get_components(CSurface, CShieldBar):
-        if c_sh.state == ShieldState.ACTIVE:
-            fill, color = c_sh.time_left / c_sh.duration, c_b.active
-        elif c_sh.state == ShieldState.COOLDOWN:
-            fill, color = 1 - c_sh.time_left / c_sh.cooldown, c_b.cooldown
-        else:
-            fill, color = 1, c_b.flash if c_sh.ready_flash > 0 else c_b.ready
-        c_s.surf.fill(c_b.background)
-        c_s.surf.fill(color, pygame.Rect(0, 0, c_s.area.width * max(fill, 0), c_s.area.height))
+    if c_sh.is_active:
+        fill = c_sh.time_active / c_sh.duration
+        bar_color = _color(bar_cfg["color_active"])
+        text = status_cfg["text_active"]
+        text_color = _color(status_cfg["color"])
+    elif c_sh.time_cooldown > 0:
+        fill = 1 - (c_sh.time_cooldown / c_sh.cooldown)
+        bar_color = _color(bar_cfg["color_charging"])
+        text = f"{c_sh.time_cooldown:.1f}s"
+        text_color = _color(status_cfg["color"])
+    else:
+        fill = 1
+        bar_color = _color(bar_cfg["color_ready"])
+        text = status_cfg["text_ready"]
+        text_color = _color(status_cfg["color_ready"]) if blink_on else _color(status_cfg["color"])
 
-    for _, (c_s, c_t) in world.get_components(CSurface, CShieldText):
-        if c_sh.state == ShieldState.READY:
-            text, color = c_t.ready_text, c_b.ready
-        else:
-            text = f"{max(c_sh.time_left, 0):.1f}s"
-            color = c_b.active if c_sh.state == ShieldState.ACTIVE else c_b.cooldown
-        if text != c_t.text:
-            # A text that changes needs a new surface, so its area is replaced too
-            c_t.text = text
-            c_s.surf = c_t.font.render(text, False, color)
-            c_s.area = c_s.surf.get_rect()
+    for _, (c_s, _) in world.get_components(CSurface, CTagShieldBar):
+        c_s.surf.fill(_color(bar_cfg["color_bg"]))
+        fill_rect = c_s.surf.get_rect()
+        fill_rect.w = round(fill_rect.w * max(0, min(fill, 1)))
+        c_s.surf.fill(bar_color, fill_rect)
+
+    # Texto dinamico: se vuelve a renderizar la superficie cuando cambia
+    for _, (c_s, c_t, c_txt, _) in world.get_components(CSurface, CTransform, CText, CTagShieldText):
+        if c_txt.text == text and c_txt.color == text_color:
+            continue
+        c_txt.text = text
+        c_txt.color = text_color
+        c_s.surf = c_txt.font.render(text, True, text_color)
+        c_s.area = c_s.surf.get_rect()
+        rect = c_s.surf.get_rect(**{c_txt.anchor: c_txt.anchor_pos})
+        c_t.pos.xy = rect.topleft

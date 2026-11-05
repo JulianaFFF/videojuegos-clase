@@ -1,40 +1,43 @@
-import pygame
 import esper
-from src.ecs.components.c_shield import CShield, ShieldState
+import pygame
+
+from src.create.prefab_creator import create_explosion
+from src.ecs.components.c_shield import CShield
 from src.ecs.components.c_surface import CSurface
 from src.ecs.components.c_transform import CTransform
-from src.ecs.components.tags.c_tag_shield_fx import CTagShieldFx
+from src.ecs.components.tags.c_tag_enemy import CTagEnemy
+from src.engine.service_locator import ServiceLocator
 
-BLINK_FREQUENCY = 12  # Toggles per second of the warning before the shield runs out
+def system_shield(world:esper.World, delta_time:float, shield_cfg:dict, explosion_cfg:dict):
+    components = world.get_components(CShield, CTransform, CSurface)
 
+    c_sh:CShield
+    for _, (c_sh, c_t, c_s) in components:
+        player_center = pygame.Vector2(CSurface.get_area_relative(c_s.area, c_t.pos).center)
 
-def system_shield(world: esper.World, player_entity: int, dt: float):
-    """
-    State machine of the shield: ACTIVE -> COOLDOWN -> READY.
-    While active its effects follow the player and blink when it is about to end.
-    """
-    c_sh = world.component_for_entity(player_entity, CShield)
-    c_sh.ready_flash = max(c_sh.ready_flash - dt, 0)
+        if c_sh.is_active:
+            c_sh.time_active -= delta_time
+            _follow_player(world, c_sh, player_center)
+            _destroy_near_enemies(world, c_sh, player_center, explosion_cfg)
+            if not c_sh.is_active and world.entity_exists(c_sh.shield_entity):
+                world.delete_entity(c_sh.shield_entity)
+                c_sh.shield_entity = -1
+        elif c_sh.time_cooldown > 0:
+            c_sh.time_cooldown -= delta_time
+            if c_sh.time_cooldown <= 0:
+                c_sh.time_cooldown = 0
+                ServiceLocator.sounds_service.play(shield_cfg["sound_ready"])
 
-    if c_sh.state == ShieldState.COOLDOWN:
-        c_sh.time_left -= dt
-        if c_sh.time_left <= 0:
-            c_sh.state = ShieldState.READY
-            c_sh.time_left = 0.0
-            c_sh.ready_flash = c_sh.ready_flash_time
+def _follow_player(world:esper.World, c_sh:CShield, player_center:pygame.Vector2):
+    if not world.entity_exists(c_sh.shield_entity):
+        return
+    sh_t = world.component_for_entity(c_sh.shield_entity, CTransform)
+    sh_s = world.component_for_entity(c_sh.shield_entity, CSurface)
+    sh_t.pos.xy = (player_center.x - sh_s.area.w / 2, player_center.y - sh_s.area.h / 2)
 
-    elif c_sh.state == ShieldState.ACTIVE:
-        c_sh.time_left -= dt
-        pl_t = world.component_for_entity(player_entity, CTransform)
-        pl_s = world.component_for_entity(player_entity, CSurface)
-        player_center = pl_t.pos + pygame.Vector2(pl_s.area.size) / 2
-        finished = c_sh.time_left <= 0
-        visible = c_sh.time_left > c_sh.blink_time or int(c_sh.time_left * BLINK_FREQUENCY) % 2 == 0
-        for fx_entity, (c_t, c_s, _) in world.get_components(CTransform, CSurface, CTagShieldFx):
-            if finished:
-                world.delete_entity(fx_entity)
-            c_t.pos = player_center - pygame.Vector2(c_s.area.size) / 2
-            c_s.visible = visible
-        if finished:
-            c_sh.state = ShieldState.COOLDOWN
-            c_sh.time_left = c_sh.cooldown
+def _destroy_near_enemies(world:esper.World, c_sh:CShield, player_center:pygame.Vector2, explosion_cfg:dict):
+    for enemy_entity, (ene_s, ene_t, _) in world.get_components(CSurface, CTransform, CTagEnemy):
+        ene_rect = CSurface.get_area_relative(ene_s.area, ene_t.pos)
+        if player_center.distance_to(ene_rect.center) <= c_sh.radius:
+            world.delete_entity(enemy_entity)
+            create_explosion(world, ene_rect.center, explosion_cfg)

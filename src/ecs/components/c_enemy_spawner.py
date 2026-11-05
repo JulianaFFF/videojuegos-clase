@@ -1,9 +1,8 @@
 import pygame
 
 
-class SpawnEvent:
-
-    def __init__(self, time: float, enemy_type: str, position: pygame.Vector2) -> None:
+class SpawnEventData:
+    def __init__(self, time:float, enemy_type:str, position:pygame.Vector2) -> None:
         self.time = time
         self.enemy_type = enemy_type
         self.position = position
@@ -11,10 +10,12 @@ class SpawnEvent:
 
 
 class CEnemySpawner:
-
-    def __init__(self, level_cfg: dict) -> None:
+    def __init__(self, spawn_events:list) -> None:
         self.current_time = 0.0
-        self.spawn_events = [
-            SpawnEvent(event["time"], event["enemy_type"], pygame.Vector2(event["position"]["x"], event["position"]["y"]))
-            for event in level_cfg["enemy_spawn_events"]
-        ]
+        self.spawn_events:list[SpawnEventData] = []
+        for event in spawn_events:
+            self.spawn_events.append(
+                SpawnEventData(time=event["time"],
+                               enemy_type=event["enemy_type"],
+                               position=pygame.Vector2(event["position"]["x"],
+                                                       event["position"]["y"])))
