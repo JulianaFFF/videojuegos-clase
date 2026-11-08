@@ -1,2 +1,0 @@
-class CTagUI:
-    pass

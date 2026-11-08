@@ -1,6 +1,9 @@
 import json
 
+
 class ConfigsService:
+    """Carga y cachea archivos JSON de configuracion."""
+
     def __init__(self) -> None:
         self._configs = {}
 
