@@ -1,24 +1,14 @@
 import pygame
 
+
 class CSurface:
-    def __init__(self, size:pygame.Vector2, color:pygame.Color) -> None:
-        self.surf = pygame.Surface(size)
-        self.surf.fill(color)
-        self.area = self.surf.get_rect()
-        
-    @classmethod
-    def from_surface(cls, surface:pygame.Surface):
-        c_surf = cls(pygame.Vector2(0,0), pygame.Color(0, 0, 0))
-        c_surf.surf = surface
-        c_surf.area = surface.get_rect()
-        return c_surf
+    """Imagen a dibujar centrada en CTransform.pos."""
+    def __init__(self, surf: pygame.Surface, visible: bool = True, layer: int = 0) -> None:
+        self.surf = surf
+        self.visible = visible
+        self.layer = layer
+        self.flash = 0.0  # segundos de parpadeo (game feel al recibir impacto / invulnerable)
 
     @classmethod
-    def from_text(cls, text:str, font:pygame.font.Font, color:pygame.Color):
-        text_surface = font.render(text, True, color)
-        return cls.from_surface(text_surface)
-    
-    def get_area_relative(area:pygame.Rect, pos_topleft:pygame.Vector2):
-        new_rect = area.copy()
-        new_rect.topleft = pos_topleft.copy()
-        return new_rect
+    def from_text(cls, text: str, font: pygame.font.Font, color, layer: int = 10):
+        return cls(font.render(text, False, color), layer=layer)
