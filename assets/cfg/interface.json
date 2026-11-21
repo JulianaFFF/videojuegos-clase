@@ -1,59 +1,68 @@
 {
     "font": "assets/fnt/PressStart2P.ttf",
-    "title": {
-        "text": "ASTEROIDES ECS",
-        "size": 16,
-        "color": { "r": 255, "g": 220, "b": 90 },
-        "anchor": "midtop",
-        "position": { "x": 320, "y": 8 }
-    },
-    "instructions": {
-        "text": "FLECHAS: MOVER  CLIC: DISPARAR  ESPACIO: ESCUDO  P: PAUSA",
-        "size": 8,
-        "color": { "r": 170, "g": 170, "b": 190 },
-        "anchor": "midbottom",
-        "position": { "x": 320, "y": 354 }
-    },
-    "pause": {
-        "text": "PAUSA",
-        "size": 32,
-        "color": { "r": 255, "g": 255, "b": 255 },
-        "anchor": "center",
-        "position": { "x": 320, "y": 165 }
-    },
-    "pause_hint": {
-        "text": "PRESIONA P PARA CONTINUAR",
-        "size": 8,
-        "color": { "r": 200, "g": 200, "b": 200 },
-        "anchor": "center",
-        "position": { "x": 320, "y": 200 }
-    },
-    "pause_overlay": {
-        "color": { "r": 0, "g": 0, "b": 0 },
-        "alpha": 140
-    },
-    "shield_label": {
-        "text": "ESCUDO",
-        "size": 8,
-        "color": { "r": 140, "g": 190, "b": 255 },
-        "anchor": "topleft",
-        "position": { "x": 8, "y": 8 }
-    },
-    "shield_status": {
-        "text_ready": "LISTO",
-        "text_active": "ACTIVO",
-        "size": 8,
-        "color": { "r": 255, "g": 255, "b": 255 },
-        "color_ready": { "r": 120, "g": 255, "b": 140 },
-        "anchor": "topleft",
-        "position": { "x": 96, "y": 20 }
-    },
-    "shield_bar": {
-        "position": { "x": 8, "y": 20 },
-        "size": { "x": 80, "y": 8 },
-        "color_bg": { "r": 60, "g": 60, "b": 80 },
-        "color_charging": { "r": 90, "g": 140, "b": 255 },
-        "color_active": { "r": 255, "g": 255, "b": 255 },
-        "color_ready": { "r": 120, "g": 255, "b": 140 }
-    }
+    "font_size": 8,
+    "colors": {"white": [255, 255, 255], "cyan": [0, 229, 255], "red": [255, 60, 60], "yellow": [255, 220, 40],
+               "green": [60, 220, 60], "gray": [140, 140, 160], "panel": [10, 10, 30], "panel_line": [60, 60, 120]},
+    "minimap": {"x": 196, "y": 104, "w": 56, "h": 56, "bg": [0, 20, 40], "base": [60, 220, 60], "player": [255, 255, 255],
+                "enemy": [255, 60, 60], "spy": [255, 220, 40]},
+    "round_banner_time": 2.5,
+    "credits": [
+        ["COSMONIAN", "yellow"],
+        "",
+        ["PROYECTO FINAL", "cyan"],
+        "INTRO. DESARROLLO",
+        "DE VIDEOJUEGOS",
+        "",
+        ["*** TRIPULACION ***", "yellow"],
+        "",
+        ["CAPITAN", "cyan"],
+        ["NIVELES, ESCENAS Y SONIDO", "gray"],
+        "NICOLAS BAQUERO OSPINO",
+        "",
+        ["PILOTO DE VUELO", "cyan"],
+        ["JUGADOR, MOVIMIENTO Y DISPAROS", "gray"],
+        "GABRIELA PERDOMO QUIJANO",
+        "",
+        ["OFICIAL TACTICO", "cyan"],
+        ["ENEMIGOS, IA Y CONDUCTA", "gray"],
+        "LAURA JULIANA FERREIRA",
+        "",
+        ["PUENTE DE MANDO (HUD)", "cyan"],
+        "TRIPULACION DE LA NAVE UwU",
+        "",
+        ["IMAGENES", "cyan"],
+        "DIANA PACHECO",
+        ["CC-BY-4.0", "gray"],
+        "",
+        ["MUSICA", "cyan"],
+        "CENTURION OF WAR",
+        ["CC0", "gray"],
+        "",
+        ["FUENTE", "cyan"],
+        "PRESS START 2P",
+        ["CODEMAN38 OFL 1.1", "gray"],
+        "",
+        "MOTOR: PYGAME-CE",
+        "ECS: ESPER"
+    ],
+    "instructions": [
+        "MISION",
+        "DESTRUYE TODAS LAS",
+        "BASES DE CADA RONDA",
+        "",
+        "FLECHAS  MOVER",
+        "Z  DISPARO DOBLE",
+        "X  DISPARO ESPECIAL",
+        "   (3 AL FRENTE, 1 ATRAS)",
+        "P  PAUSA",
+        "",
+        "BASE: DESTRUYE SUS 6",
+        "TORRES O ACIERTA AL",
+        "NUCLEO CUANDO ESTE",
+        "ABIERTO",
+        "",
+        "EVITA ROCAS GRISES",
+        "Y MINAS. MATA AL ESPIA",
+        "ANTES DE QUE ESCAPE"
+    ]
 }

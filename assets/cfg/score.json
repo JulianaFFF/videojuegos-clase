@@ -1,0 +1,9 @@
+{
+    "extra_life_first": 10000,
+    "extra_life_every": 30000,
+    "max_lives": 6,
+    "round_clear_bonus": 1000,
+    "spy_points": 500,
+    "highscore_default": 20000,
+    "highscore_file": "highscore.json"
+}

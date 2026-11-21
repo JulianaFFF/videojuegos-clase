@@ -1,0 +1,7 @@
+{
+    "turret": {"radius": 7, "points": 200, "range": 110, "cooldown": 1.6, "aim_time": 0.35,
+               "bullet_speed": 85, "bullet_ttl": 1.8},
+    "core": {"radius": 7, "points": 1500, "open_time": 2.0, "closed_time": 2.0,
+             "e_launch_range": 140, "e_cooldown": 4.0},
+    "explosions_on_destroy": 8
+}

@@ -1,0 +1,5 @@
+{
+    "GREEN":  {"color": [60, 220, 60],  "text": "CONDITION GREEN",  "spawn_interval_mult": 1.0, "max_enemies": 4, "sound": "assets/snd/alert_green.ogg"},
+    "YELLOW": {"color": [250, 220, 40], "text": "CONDITION YELLOW", "spawn_interval_mult": 0.6, "max_enemies": 7, "sound": "assets/snd/alert_yellow.ogg"},
+    "RED":    {"color": [240, 40, 40],  "text": "CONDITION RED",    "spawn_interval_mult": 0.3, "max_enemies": 12, "sound": "assets/snd/alert_red.ogg"}
+}

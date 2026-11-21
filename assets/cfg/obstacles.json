@@ -1,0 +1,5 @@
+{
+    "rock": {"radius": 6, "points": 10},
+    "hard_rock": {"radius": 6},
+    "mine": {"radius": 6, "points": 20, "blast_radius": 22, "blast_time": 0.5, "anim_fps": 4}
+}

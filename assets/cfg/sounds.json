@@ -1,0 +1,15 @@
+{
+    "shoot": "assets/snd/laser.ogg",
+    "special": "assets/snd/laser_special.ogg",
+    "enemy_die": "assets/snd/explosion.ogg",
+    "rock": "assets/snd/asteroid.ogg",
+    "mine": "assets/snd/mine.ogg",
+    "turret_die": "assets/snd/turret_hit.ogg",
+    "base_die": "assets/snd/base_explode.ogg",
+    "enemy_shot": "assets/snd/enemy_shot.ogg",
+    "player_die": "assets/snd/player_die.ogg",
+    "extra_life": "assets/snd/extra_life.ogg",
+    "round_start": "assets/snd/round_start.ogg",
+    "select": "assets/snd/select.ogg",
+    "spy": "assets/snd/ufo.ogg"
+}

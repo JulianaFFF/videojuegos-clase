@@ -1,0 +1,467 @@
+{
+ "player_start": {
+  "x": 512,
+  "y": 512
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "bases": [
+    {
+     "x": 714,
+     "y": 174,
+     "layout": "v"
+    },
+    {
+     "x": 85,
+     "y": 819,
+     "layout": "h"
+    },
+    {
+     "x": 341,
+     "y": 310,
+     "layout": "v"
+    }
+   ],
+   "core_animated": false,
+   "spawn_e": false,
+   "rocks": 15,
+   "hard_rocks": 4,
+   "mines": 7,
+   "enemy_types": [
+    "I"
+   ],
+   "spawn_interval": 3.3,
+   "special_charges": 3,
+   "yellow_time": 35,
+   "red_time": 78,
+   "spy_time": -1,
+   "formation": false,
+   "turret_cooldown_mult": 0.95
+  },
+  {
+   "round": 2,
+   "bases": [
+    {
+     "x": 288,
+     "y": 202,
+     "layout": "h"
+    },
+    {
+     "x": 814,
+     "y": 164,
+     "layout": "v"
+    },
+    {
+     "x": 752,
+     "y": 818,
+     "layout": "h"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": false,
+   "rocks": 16,
+   "hard_rocks": 5,
+   "mines": 8,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 3.1,
+   "special_charges": 3,
+   "yellow_time": 35,
+   "red_time": 76,
+   "spy_time": 20,
+   "formation": false,
+   "turret_cooldown_mult": 0.91
+  },
+  {
+   "round": 3,
+   "bases": [
+    {
+     "x": 618,
+     "y": 149,
+     "layout": "v"
+    },
+    {
+     "x": 92,
+     "y": 90,
+     "layout": "h"
+    },
+    {
+     "x": 298,
+     "y": 577,
+     "layout": "v"
+    },
+    {
+     "x": 793,
+     "y": 725,
+     "layout": "h"
+    }
+   ],
+   "core_animated": false,
+   "spawn_e": true,
+   "rocks": 17,
+   "hard_rocks": 5,
+   "mines": 9,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 2.9,
+   "special_charges": 3,
+   "yellow_time": 35,
+   "red_time": 74,
+   "spy_time": 20,
+   "formation": false,
+   "turret_cooldown_mult": 0.86
+  },
+  {
+   "round": 4,
+   "bases": [
+    {
+     "x": 778,
+     "y": 618,
+     "layout": "h"
+    },
+    {
+     "x": 489,
+     "y": 285,
+     "layout": "v"
+    },
+    {
+     "x": 344,
+     "y": 888,
+     "layout": "h"
+    },
+    {
+     "x": 950,
+     "y": 66,
+     "layout": "v"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 18,
+   "hard_rocks": 6,
+   "mines": 10,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 2.7,
+   "special_charges": 4,
+   "yellow_time": 35,
+   "red_time": 72,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.82
+  },
+  {
+   "round": 5,
+   "bases": [
+    {
+     "x": 837,
+     "y": 885,
+     "layout": "v"
+    },
+    {
+     "x": 223,
+     "y": 774,
+     "layout": "h"
+    },
+    {
+     "x": 344,
+     "y": 219,
+     "layout": "v"
+    },
+    {
+     "x": 154,
+     "y": 449,
+     "layout": "h"
+    },
+    {
+     "x": 927,
+     "y": 412,
+     "layout": "v"
+    }
+   ],
+   "core_animated": false,
+   "spawn_e": true,
+   "rocks": 19,
+   "hard_rocks": 6,
+   "mines": 11,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 2.5,
+   "special_charges": 4,
+   "yellow_time": 35,
+   "red_time": 70,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.78
+  },
+  {
+   "round": 6,
+   "bases": [
+    {
+     "x": 678,
+     "y": 330,
+     "layout": "h"
+    },
+    {
+     "x": 886,
+     "y": 104,
+     "layout": "v"
+    },
+    {
+     "x": 807,
+     "y": 530,
+     "layout": "h"
+    },
+    {
+     "x": 447,
+     "y": 140,
+     "layout": "v"
+    },
+    {
+     "x": 693,
+     "y": 942,
+     "layout": "h"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 20,
+   "hard_rocks": 7,
+   "mines": 12,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 2.3,
+   "special_charges": 4,
+   "yellow_time": 35,
+   "red_time": 68,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.73
+  },
+  {
+   "round": 7,
+   "bases": [
+    {
+     "x": 256,
+     "y": 781,
+     "layout": "v"
+    },
+    {
+     "x": 131,
+     "y": 106,
+     "layout": "h"
+    },
+    {
+     "x": 737,
+     "y": 293,
+     "layout": "v"
+    },
+    {
+     "x": 163,
+     "y": 449,
+     "layout": "h"
+    },
+    {
+     "x": 710,
+     "y": 914,
+     "layout": "v"
+    },
+    {
+     "x": 433,
+     "y": 226,
+     "layout": "h"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 21,
+   "hard_rocks": 7,
+   "mines": 13,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 2.0999999999999996,
+   "special_charges": 5,
+   "yellow_time": 35,
+   "red_time": 66,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.69
+  },
+  {
+   "round": 8,
+   "bases": [
+    {
+     "x": 274,
+     "y": 746,
+     "layout": "h"
+    },
+    {
+     "x": 759,
+     "y": 723,
+     "layout": "v"
+    },
+    {
+     "x": 710,
+     "y": 235,
+     "layout": "h"
+    },
+    {
+     "x": 310,
+     "y": 227,
+     "layout": "v"
+    },
+    {
+     "x": 901,
+     "y": 92,
+     "layout": "h"
+    },
+    {
+     "x": 884,
+     "y": 383,
+     "layout": "v"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 22,
+   "hard_rocks": 8,
+   "mines": 14,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 1.9,
+   "special_charges": 5,
+   "yellow_time": 35,
+   "red_time": 64,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.64
+  },
+  {
+   "round": 9,
+   "bases": [
+    {
+     "x": 127,
+     "y": 276,
+     "layout": "v"
+    },
+    {
+     "x": 640,
+     "y": 957,
+     "layout": "h"
+    },
+    {
+     "x": 795,
+     "y": 382,
+     "layout": "v"
+    },
+    {
+     "x": 277,
+     "y": 731,
+     "layout": "h"
+    },
+    {
+     "x": 822,
+     "y": 634,
+     "layout": "v"
+    },
+    {
+     "x": 108,
+     "y": 941,
+     "layout": "h"
+    },
+    {
+     "x": 941,
+     "y": 71,
+     "layout": "v"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 23,
+   "hard_rocks": 8,
+   "mines": 15,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 1.7,
+   "special_charges": 5,
+   "yellow_time": 35,
+   "red_time": 62,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.59
+  },
+  {
+   "round": 10,
+   "bases": [
+    {
+     "x": 756,
+     "y": 798,
+     "layout": "h"
+    },
+    {
+     "x": 177,
+     "y": 758,
+     "layout": "v"
+    },
+    {
+     "x": 716,
+     "y": 408,
+     "layout": "h"
+    },
+    {
+     "x": 174,
+     "y": 360,
+     "layout": "v"
+    },
+    {
+     "x": 505,
+     "y": 221,
+     "layout": "h"
+    },
+    {
+     "x": 442,
+     "y": 840,
+     "layout": "v"
+    },
+    {
+     "x": 959,
+     "y": 640,
+     "layout": "h"
+    }
+   ],
+   "core_animated": true,
+   "spawn_e": true,
+   "rocks": 24,
+   "hard_rocks": 9,
+   "mines": 16,
+   "enemy_types": [
+    "I",
+    "P"
+   ],
+   "spawn_interval": 1.5,
+   "special_charges": 6,
+   "yellow_time": 35,
+   "red_time": 60,
+   "spy_time": 20,
+   "formation": true,
+   "turret_cooldown_mult": 0.55
+  }
+ ]
+}

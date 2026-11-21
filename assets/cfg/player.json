@@ -1,22 +1,11 @@
 {
-    "image": "assets/img/player.png",
-    "animations": {
-        "number_frames": 4,
-        "list": [
-            {
-                "name": "MOVE",
-                "start": 0,
-                "end": 3,
-                "framerate": 10
-            },
-            {
-                "name": "IDLE",
-                "start": 0,
-                "end": 0,
-                "framerate": 1
-            }
-        ]
-    },
-    "input_velocity": 100,
-    "sound_move": "assets/snd/thrust.ogg"
+    "max_speed": 85,
+    "acceleration": 140,
+    "hitbox_radius": 5,
+    "lives": 3,
+    "respawn_time": 2.5,
+    "invulnerable_time": 2.0,
+    "death_explosions": 7,
+    "bullet": {"speed": 260, "ttl": 0.55, "radius": 2, "max_on_screen": 8, "cooldown": 0.12},
+    "special": {"spread_deg": 15, "cooldown": 0.35}
 }
